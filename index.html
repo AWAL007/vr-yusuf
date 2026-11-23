@@ -1,97 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Virtual Reality Tour - Makassar</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Reality Tour - Makassar</title>
 
-  <!-- Library A-Frame (versi stabil 1.5.0) -->
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!-- Library A-Frame (versi stabil 1.5.0) -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
-  <!-- Komponen look-at: memutar entitas agar selalu menghadap kamera -->
-  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <!-- Komponen look-at: memutar entitas agar selalu menghadap kamera -->
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 
-  <style>
-    body { margin: 0; font-family: Arial, Helvetica, sans-serif; overflow: hidden; }
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+      }
 
-    /* Overlay judul & petunjuk kontrol */
-    #hud {
-      position: fixed; top: 12px; left: 12px; z-index: 10;
-      color: #fff; background: rgba(0, 0, 0, 0.55);
-      padding: 10px 14px; border-radius: 8px;
-      font-size: 14px; line-height: 1.5; max-width: 280px;
-      pointer-events: none;
-    }
-    #hud b { color: #00ffcc; }
-    #hud .spot-name { color: #ffd54f; font-weight: bold; }
+      /* Overlay judul & petunjuk kontrol */
+      #hud {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 10;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.55);
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 14px;
+        line-height: 1.5;
+        max-width: 280px;
+        pointer-events: none;
+      }
+      #hud b {
+        color: #00ffcc;
+      }
+      #hud .spot-name {
+        color: #ffd54f;
+        font-weight: bold;
+      }
 
-    /* Indikator loading */
-    #loading {
-      position: fixed; inset: 0; z-index: 20;
-      display: flex; align-items: center; justify-content: center;
-      background: #000; color: #00ffcc; font-size: 18px;
-      transition: opacity 0.5s ease;
-    }
-  </style>
-</head>
-<body>
+      /* Indikator loading */
+      #loading {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        color: #00ffcc;
+        font-size: 18px;
+        transition: opacity 0.5s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Overlay petunjuk -->
+    <div id="hud">
+      <b>VR Tour Makassar</b><br />
+      <span class="spot-name" id="hud-spot">Spot 1</span><br />
+      Gerakkan mouse / drag untuk melihat sekeliling.<br />
+      Klik hotspot untuk pindah spot (atau tatap 1.5 dtk di mode VR).
+    </div>
 
-  <!-- Overlay petunjuk -->
-  <div id="hud">
-    <b>VR Tour Makassar</b><br>
-    <span class="spot-name" id="hud-spot">Spot 1</span><br>
-    Gerakkan mouse / drag untuk melihat sekeliling.<br>
-    Klik hotspot untuk pindah spot (atau tatap 1.5 dtk di mode VR).
-  </div>
+    <div id="loading">Memuat aset 360&deg; ...</div>
 
-  <div id="loading">Memuat aset 360&deg; ...</div>
-
-  <!-- =========================================================
+    <!-- =========================================================
        SCENE
        - cursor="rayOrigin: mouse"  -> mode browser biasa (klik mouse/touch)
        - <a-cursor> di kamera        -> mode VR headset (gaze + fuse)
        raycaster active hanya 1 pointer yang menjawab; keduanya menunjuk .clickable
        ========================================================= -->
-  <a-scene
-    id="scene"
-    background="color: #111"
-    cursor="rayOrigin: mouse; fuse: false"
-    raycaster="objects: .clickable; far: 50"
-    renderer="antialias: true; colorManagement: true"
-    loading-screen="enabled: false">
-
-    <!-- ==========================================================
+    <a-scene
+      id="scene"
+      background="color: #111"
+      cursor="rayOrigin: mouse; fuse: false"
+      raycaster="objects: .clickable; far: 50"
+      renderer="antialias: true; colorManagement: true"
+      loading-screen="enabled: false"
+    >
+      <!-- ==========================================================
          1. PRELOAD ASET
          Semua path di bawah 100% mengikuti nama file asli di folder
          assets/images. URL di-spesial-escape (%20, %28, %29) agar
          aman dari error CORS / missing asset saat dijalankan Live Server.
          ========================================================== -->
-    <a-assets timeout="60000">
-      <!-- 16 Foto 360 equirectangular (nama deskriptif) -->
-      <img id="img-spot1"  src="assets/images/depan.jpg" crossorigin="anonymous">
-      <img id="img-spot2"  src="assets/images/depan kiri.jpg" crossorigin="anonymous">
-      <img id="img-spot3"  src="assets/images/kiri tengah.jpg" crossorigin="anonymous">
-      <img id="img-spot4"  src="assets/images/belakang kiri.jpg" crossorigin="anonymous">
-      <img id="img-spot5"  src="assets/images/belakang tengah.jpg" crossorigin="anonymous">
-      <img id="img-spot6"  src="assets/images/belakang kanan.jpg" crossorigin="anonymous">
-      <img id="img-spot7"  src="assets/images/kanan tengah.jpg" crossorigin="anonymous">
-      <img id="img-spot8"  src="assets/images/depan kanan.jpg" crossorigin="anonymous">
-      <img id="img-spot9"  src="assets/images/tengah dalam.jpg" crossorigin="anonymous">
-      <img id="img-spot10" src="assets/images/dalam belakang kiri.jpg" crossorigin="anonymous">
-      <img id="img-spot11" src="assets/images/dalam depan kiri.jpg" crossorigin="anonymous">
-      <img id="img-spot12" src="assets/images/dalam depan kanan.jpg" crossorigin="anonymous">
-      <img id="img-spot13" src="assets/images/dalam belakang kanan.jpg" crossorigin="anonymous">
-      <img id="img-spot14" src="assets/images/dalam kiri l2.jpg" crossorigin="anonymous">
-      <img id="img-spot15" src="assets/images/tengah dalam l2.jpg" crossorigin="anonymous">
-      <img id="img-spot16" src="assets/images/kanan dalam l2.jpg" crossorigin="anonymous">
+      <a-assets timeout="60000">
+        <!-- 16 Foto 360 equirectangular (nama deskriptif) -->
+        <img
+          id="img-spot1"
+          src="assets/images/depan.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot2"
+          src="assets/images/depan kiri.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot3"
+          src="assets/images/kiri tengah.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot4"
+          src="assets/images/belakang kiri.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot5"
+          src="assets/images/belakang tengah.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot6"
+          src="assets/images/belakang kanan.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot7"
+          src="assets/images/kanan tengah.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot8"
+          src="assets/images/depan kanan.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot9"
+          src="assets/images/tengah dalam.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot10"
+          src="assets/images/dalam belakang kiri.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot11"
+          src="assets/images/dalam depan kiri.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot12"
+          src="assets/images/dalam depan kanan.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot13"
+          src="assets/images/dalam belakang kanan.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot14"
+          src="assets/images/dalam kiri l2.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot15"
+          src="assets/images/tengah dalam l2.jpg"
+          crossorigin="anonymous"
+        />
+        <img
+          id="img-spot16"
+          src="assets/images/kanan dalam l2.jpg"
+          crossorigin="anonymous"
+        />
 
-      <!-- Gambar tombol hotspot kustom (panah.png) -->
-      
+        <!-- Gambar tombol hotspot kustom (panah.png) -->
 
-      <!-- Model 3D tombol hotspot (panah_3d.glb) -->
-      <a-asset-item id="panah-3d" src="assets/images/pixellabs-red-map-marker-icon-2709.glb"></a-asset-item>
-      
-      <!-- ======================================================
+        <!-- Model 3D tombol hotspot (panah_3d.glb) -->
+        <a-asset-item
+          id="panah-3d"
+          src="assets/images/pixellabs-red-map-marker-icon-2709.glb"
+        ></a-asset-item>
+
+        <!-- ======================================================
            OBJEK 3D
            Folder assets/models saat ini KOSONG, jadi kita pakai
            placeholder primitif A-Frame (a-box, a-dodecahedron, dll).
@@ -105,54 +192,60 @@
            panah.png sudah didaftarkan di atas sebagai #btn-pindah.
            Pakai pada hotspots via properti icon: "#btn-pindah".
            ====================================================== -->
-    </a-assets>
+      </a-assets>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          2. LINGKUNGAN 360 & PENCAHAYAAN
          ========================================================== -->
-    <a-sky id="skybox" src="#img-spot1" rotation="0 -90 0"></a-sky>
+      <a-sky id="skybox" src="#img-spot1" rotation="0 -90 0"></a-sky>
 
-    <!-- Pencahayaan: ambient + directional agar objek 3D terlihat jelas -->
-    <a-entity light="type: ambient; color: #ffffff; intensity: 0.85"></a-entity>
-    <a-entity light="type: directional; color: #ffffff; intensity: 0.9; castShadow: true" position="2 4 3"></a-entity>
+      <!-- Pencahayaan: ambient + directional agar objek 3D terlihat jelas -->
+      <a-entity
+        light="type: ambient; color: #ffffff; intensity: 0.85"
+      ></a-entity>
+      <a-entity
+        light="type: directional; color: #ffffff; intensity: 0.9; castShadow: true"
+        position="2 4 3"
+      ></a-entity>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          3. KAMERA & KURSOR
          - look-controls aktif (drag / gerak kepala di VR)
          - <a-cursor> di dalam kamera -> gaze cursor untuk mode headset
          ========================================================== -->
-    <a-entity id="rig" position="0 1.6 0">
-      <a-entity id="camera"
-        camera="fov: 80; active: true"
-        look-controls="pointerLockEnabled: false; reverseMouseDrag: false; touchEnabled: true"
-        position="0 0 0">
-
-        <!-- Gaze cursor untuk VR headset (fuse 1.5 dtk) -->
-        <a-cursor id="gaze-cursor"
-          fuse="true"
-          fuse-timeout="1500"
-          color="#00ffcc"
-          scale="0.4 0.4 0.4"
-          geometry="primitive: ring; radiusInner: 0.012; radiusOuter: 0.02"
-          material="shader: flat; color: #00ffcc; opacity: 0.9"
-          raycaster="objects: .clickable; far: 50"
-          animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 0.4 0.4 0.4"
-          animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.4 0.4 0.4; to: 0.1 0.1 0.1">
-        </a-cursor>
+      <a-entity id="rig" position="0 1.6 0">
+        <a-entity
+          id="camera"
+          camera="fov: 80; active: true"
+          look-controls="pointerLockEnabled: false; reverseMouseDrag: false; touchEnabled: true"
+          position="0 0 0"
+        >
+          <!-- Gaze cursor untuk VR headset (fuse 1.5 dtk) -->
+          <a-cursor
+            id="gaze-cursor"
+            fuse="true"
+            fuse-timeout="1500"
+            color="#00ffcc"
+            scale="0.4 0.4 0.4"
+            geometry="primitive: ring; radiusInner: 0.012; radiusOuter: 0.02"
+            material="shader: flat; color: #00ffcc; opacity: 0.9"
+            raycaster="objects: .clickable; far: 50"
+            animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 0.4 0.4 0.4"
+            animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 0.4 0.4 0.4; to: 0.1 0.1 0.1"
+          >
+          </a-cursor>
+        </a-entity>
       </a-entity>
-    </a-entity>
 
-    <!-- ==========================================================
+      <!-- ==========================================================
          4. WADAH DINAMIS
          Semua hotspot & objek 3D dirender oleh tour.js ke dalam
          container ini berdasarkan data tourData.
          ========================================================== -->
-    <a-entity id="scene-content"></a-entity>
+      <a-entity id="scene-content"></a-entity>
+    </a-scene>
 
-  </a-scene>
-
-  <!-- Logika tour (data + render + navigasi) dipisah agar rapi -->
-  <script src="tour.js"></script>
-
-</body>
+    <!-- Logika tour (data + render + navigasi) dipisah agar rapi -->
+    <script src="tour.js"></script>
+  </body>
 </html>

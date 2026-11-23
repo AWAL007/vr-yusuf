@@ -42,20 +42,31 @@
  *   (lihat fungsi createObject3D di bawah).
  * ========================================================================== */
 const tourData = {
-
   // ---------------------[ 1 ]---------------------
   spot1: {
     image: "#img-spot1",
     title: "Spot 1 — Titik Awal",
     hotspots: [
       { target: "spot2", label: "Ke Spot 2  ➜", pos: "-15 1.6 -4" },
-      { target: "spot8", label: "Ke Spot 8  ➜", pos: "15 1.6 -4", scale: "1 1 1"},
-      { target: "spot9", label: "Ke Spot 9  ➜", pos: "0 1.6 -15" }
+      {
+        target: "spot8",
+        label: "Ke Spot 8  ➜",
+        pos: "15 1.6 -4",
+        scale: "1 1 1",
+      },
+      { target: "spot9", label: "Ke Spot 9  ➜", pos: "0 1.6 -15" },
     ],
     objects3D: [
       // Objek di sudut kanan depan
-      { shape: "a-dodecahedron", color: "#ff7043", pos: "2.6 1.0 -3.2", rot: "0 0 0",   scale: "0.8 0.8 0.8", label: "Kristal" }
-    ]
+      {
+        shape: "a-dodecahedron",
+        color: "#ff7043",
+        pos: "2.6 1.0 -3.2",
+        rot: "0 0 0",
+        scale: "0.8 0.8 0.8",
+        label: "Kristal",
+      },
+    ],
   },
 
   // ---------------------[ 2 ]---------------------
@@ -63,10 +74,20 @@ const tourData = {
     image: "#img-spot2",
     title: "Spot 2",
     hotspots: [
-      { target: "spot1", label: "↩  Kembali ke Spot 1", pos: "25 2 -40", scale: "4 4 4" },
-      { target: "spot3", label: "Ke Spot 3 ➜", pos: "-5 1.5 -3", scale: "0.5 0.5 0.5" }
+      {
+        target: "spot1",
+        label: "↩  Kembali ke Spot 1",
+        pos: "25 2 -40",
+        scale: "4 4 4",
+      },
+      {
+        target: "spot3",
+        label: "Ke Spot 3 ➜",
+        pos: "-5 1.5 -3",
+        scale: "0.5 0.5 0.5",
+      },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 3 ]---------------------
@@ -75,10 +96,20 @@ const tourData = {
     title: "Spot 3",
     hotspots: [
       { target: "spot4", label: "↩  Ke spot 4", pos: "-10 1.6 -2" },
-      { target: "spot9", label: "Ke Spot 9  ➜", pos: "-0.2 1.6 -5", scale: "0.5 0.5 0.5" },
-      { target: "spot2", label: "Ke Spot 2  ➜", pos: "10 1.3 -0.6", scale: "0.5 0.5 0.5"}
+      {
+        target: "spot9",
+        label: "Ke Spot 9  ➜",
+        pos: "-0.2 1.6 -5",
+        scale: "0.5 0.5 0.5",
+      },
+      {
+        target: "spot2",
+        label: "Ke Spot 2  ➜",
+        pos: "10 1.3 -0.6",
+        scale: "0.5 0.5 0.5",
+      },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 4 ]---------------------
@@ -87,8 +118,13 @@ const tourData = {
     title: "Spot 4",
     hotspots: [
       { target: "spot3", label: "↩  Kembali ke Spot 3", pos: "8 1.6 -5" },
-      { target: "spot5", label: "Ke Spot 5  ➜", pos: "-2.5 1.6 -4", scale: "0.5 0.5 0.5"}
-    ]
+      {
+        target: "spot5",
+        label: "Ke Spot 5  ➜",
+        pos: "-2.5 1.6 -4",
+        scale: "0.5 0.5 0.5",
+      },
+    ],
     /*objects3D: [
       // Objek di sudut kiri depan
       { shape: "a-box", color: "#42a5f5", pos: "-2.6 1.0 -3.2", rot: "0 35 0", scale: "1 1 1", label: "Kubus" }
@@ -100,10 +136,15 @@ const tourData = {
     image: "#img-spot5",
     title: "Spot 5",
     hotspots: [
-      { target: "spot4", label: "↩  Kembali ke Spot 4", pos: "10 1.6 -2", scale: "1 1 1" },
-      { target: "spot6", label: "Ke Spot 6  ➜", pos: "-15 1 2" }
+      {
+        target: "spot4",
+        label: "↩  Kembali ke Spot 4",
+        pos: "10 1.6 -2",
+        scale: "1 1 1",
+      },
+      { target: "spot6", label: "Ke Spot 6  ➜", pos: "-15 1 2" },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 6 ]---------------------
@@ -111,10 +152,15 @@ const tourData = {
     image: "#img-spot6",
     title: "Spot 6",
     hotspots: [
-      { target: "spot5", label: "↩  Kembali ke Spot 5", pos: "0 1.6 4" },
-      { target: "spot7", label: "Ke Spot 7  ➜", pos: "-3 1.6 -2" }
+      { target: "spot5", label: "↩  Kembali ke Spot 5", pos: "5.5 1.6 -6" },
+      {
+        target: "spot7",
+        label: "Ke Spot 7  ➜",
+        pos: "-3 1.6 -2",
+        scale: "0.3 0.3 0.3",
+      },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 7 ]---------------------
@@ -124,9 +170,14 @@ const tourData = {
     hotspots: [
       { target: "spot6", label: "↩  Kembali ke Spot 6", pos: "10 1.6 -4" },
       { target: "spot8", label: "Ke Spot 8  ➜", pos: "-10 1.6 2.6" },
-      { target: "spot9", label: "Ke Spot 9  ➜", pos: "-1.6 1.6 -5", scale: "0.5 0.5 0.5" }
+      {
+        target: "spot9",
+        label: "Ke Spot 9  ➜",
+        pos: "-1.6 1.6 -5",
+        scale: "0.5 0.5 0.5",
+      },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 8 ]---------------------
@@ -135,12 +186,19 @@ const tourData = {
     title: "Spot 8 — Persimpangan",
     hotspots: [
       { target: "spot7", label: "↩  Ke Spot 7", pos: "10 1.6 3" },
-      { target: "spot1", label: "Ke Spot 1  ➜", pos: "1 1.6 -9" }
+      { target: "spot1", label: "Ke Spot 1  ➜", pos: "1 1.6 -9" },
     ],
     objects3D: [
       // Objek di sudut kanan belakang
-      { shape: "a-torus", color: "#ab47bc", pos: "3.0 1.2 2.8", rot: "0 0 0", scale: "0.9 0.9 0.9", label: "Cincin" }
-    ]
+      {
+        shape: "a-torus",
+        color: "#ab47bc",
+        pos: "3.0 1.2 2.8",
+        rot: "0 0 0",
+        scale: "0.9 0.9 0.9",
+        label: "Cincin",
+      },
+    ],
   },
 
   // ---------------------[ 9 ]---------------------
@@ -148,41 +206,57 @@ const tourData = {
     image: "#img-spot9",
     title: "Spot 9",
     hotspots: [
-      { target: "spot1", label: "↩  Kembali ke Spot 1", pos: "0.1 1.5 4", scale: "0.2 0.2 0.2" },
+      {
+        target: "spot1",
+        label: "↩  Kembali ke Spot 1",
+        pos: "0.1 1.5 4",
+        scale: "0.2 0.2 0.2",
+      },
       { target: "spot13", label: "Ke Spot 13  ➜", pos: "10 1.6 8" },
       { target: "spot11", label: "Ke Spot 11  ➜", pos: "-10 1.4 -5" },
       { target: "spot10", label: "Ke Spot 10  ➜", pos: "-10 1.6 10" },
-      { target: "spot12", label: "Ke Spot 12  ➜", pos: "10 1.3 -7"},
-      { target: "spot16", label: "Ke Spot 16  ➜", pos: "15 6 2", scale: "1.5 1.5 1.5" },
-      { target: "spot14", label: "Ke Spot 14  ➜", pos: "-8 4 1", scale: "1 1 1" },
-      { target: "spot15", label: "Ke Spot 15  ➜", pos: "0 5 10" }
+      { target: "spot12", label: "Ke Spot 12  ➜", pos: "10 1.3 -7" },
+      {
+        target: "spot16",
+        label: "Ke Spot 16  ➜",
+        pos: "15 6 2",
+        scale: "1.5 1.5 1.5",
+      },
+      {
+        target: "spot14",
+        label: "Ke Spot 14  ➜",
+        pos: "-8 4 1",
+        scale: "1 1 1",
+      },
+      { target: "spot15", label: "Ke Spot 15  ➜", pos: "0 5 10" },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 10 ]---------------------
   spot10: {
     image: "#img-spot10",
     title: "Spot 10",
-    hotspots: [
-      { target: "spot9", label: "↩  Kembali ke Spot 9", pos: "-3 1.6 2" },
-      { target: "spot11", label: "Ke Spot 11  ➜", pos: "0 1.6 -4" }
-    ],
-    objects3D: []
+    hotspots: [{ target: "spot9", label: "Ke Spot 9  ➜", pos: "0 1.6 -8" }],
+    objects3D: [],
   },
 
   // ---------------------[ 11 ]---------------------
   spot11: {
     image: "#img-spot11",
     title: "Spot 11",
-    hotspots: [
-      { target: "spot10", label: "↩  Kembali ke Spot 10", pos: "0 1.6 4" },
-      { target: "spot12", label: "Ke Spot 12  ➜", pos: "-3 1.6 2" }
-    ],
+    hotspots: [{ target: "spot9", label: "Ke Spot 9  ➜", pos: "-3 1.6 -8" }],
     objects3D: [
       // Objek di sudut kiri depan
-      { shape: "a-octahedron", color: "#66bb6a", pos: "-2.6 1.0 -3.2", rot: "0 0 0", scale: "0.85 0.85 0.85", label: "Octahedron" }
-    ]
+      {
+        shape: "a-octahedron",
+        color: "#66bb6a",
+        pos: "-2.6 1.0 -3.2",
+        rot: "0 0 0",
+        scale: "0.85 0.85 0.85",
+        label: "Octahedron",
+      },
+    ],
   },
 
   // ---------------------[ 12 ]---------------------
@@ -190,21 +264,22 @@ const tourData = {
     image: "#img-spot12",
     title: "Spot 12",
     hotspots: [
-      { target: "spot11", label: "↩  Kembali ke Spot 11", pos: "3 1.6 2" },
-      { target: "spot13", label: "Ke Spot 13  ➜", pos: "0 1.6 -4" }
+      {
+        target: "spot9",
+        label: "Ke Spot 9  ➜",
+        pos: "0.3 1.6 -4",
+        scale: "0.6 0.6 0.6",
+      },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 13 ]---------------------
   spot13: {
     image: "#img-spot13",
     title: "Spot 13",
-    hotspots: [
-      { target: "spot12", label: "↩  Kembali ke Spot 12", pos: "0 1.6 4" },
-      { target: "spot14", label: "Ke Spot 14  ➜", pos: "3 1.6 -2" }
-    ],
-    objects3D: []
+    hotspots: [{ target: "spot9", label: "Ke Spot 9  ➜", pos: "4 1.4 -8" }],
+    objects3D: [],
   },
 
   // ---------------------[ 14 ]---------------------
@@ -212,10 +287,15 @@ const tourData = {
     image: "#img-spot14",
     title: "Spot 14",
     hotspots: [
-      
-      { target: "spot9",  label: "⟳  Ke spot 9", pos: "0  1.3 -3", icon: "#btn-pindah", scale: "0.5 0.5 0.5" }
+      {
+        target: "spot9",
+        label: "⟳  Ke spot 9",
+        pos: "1  1 -3",
+        icon: "#btn-pindah",
+        scale: "0.5 0.5 0.5",
+      },
     ],
-    objects3D: []
+    objects3D: [],
   },
 
   // ---------------------[ 15 ]---------------------
@@ -223,13 +303,25 @@ const tourData = {
     image: "#img-spot15",
     title: "Spot 15",
     hotspots: [
-      
-      { target: "spot9",  label: "⟳  Ke spot 9", pos: "0  1.3 -3", icon: "#btn-pindah", scale: "0.5 0.5 0.5" }
+      {
+        target: "spot9",
+        label: "⟳  Ke spot 9",
+        pos: "0  1 -5",
+        icon: "#btn-pindah",
+        scale: "0.5 0.5 0.5",
+      },
     ],
     objects3D: [
       // Objek di sudut kanan depan
-      { shape: "a-sphere", color: "#ffa726", pos: "2.6 1.1 -3.2", rot: "0 0 0", scale: "0.9 0.9 0.9", label: "Bola" }
-    ]
+      {
+        shape: "a-sphere",
+        color: "#ffa726",
+        pos: "2.6 1.1 -3.2",
+        rot: "0 0 0",
+        scale: "0.9 0.9 0.9",
+        label: "Bola",
+      },
+    ],
   },
 
   // ---------------------[ 16 ]---------------------
@@ -237,13 +329,26 @@ const tourData = {
     image: "#img-spot16",
     title: "Spot 16 — Tujuan Akhir",
     hotspots: [
-      { target: "spot9",  label: "⟳  Ke spot 9", pos: "0  1.3 -3", icon: "#btn-pindah", scale: "0.5 0.5 0.5" }
+      {
+        target: "spot9",
+        label: "⟳  Ke spot 9",
+        pos: "0  1.3 -3",
+        icon: "#btn-pindah",
+        scale: "0.5 0.5 0.5",
+      },
     ],
     objects3D: [
       // Objek di sudut kiri belakang (objek ke-5, tersebar di spot berbeda)
-      { shape: "a-torus-knot", color: "#ef5350", pos: "-3.0 1.2 4", rot: "0 0 0", scale: "0.9 0.9 0.9", label: "Torus Knot" }
-    ]
-  }
+      {
+        shape: "a-torus-knot",
+        color: "#ef5350",
+        pos: "-3.0 1.2 4",
+        rot: "0 0 0",
+        scale: "0.9 0.9 0.9",
+        label: "Torus Knot",
+      },
+    ],
+  },
 };
 
 /* ============================================================================
@@ -280,7 +385,7 @@ function createHotspotButton(hs) {
   if (modelSrc) {
     // ---- Mode MODEL 3D: render <a-gltf-model> (panah_3d.glb) ----
     btn = document.createElement("a-gltf-model");
-    btn.setAttribute("src", modelSrc);       // contoh: "#panah-3d"
+    btn.setAttribute("src", modelSrc); // contoh: "#panah-3d"
     // Ukuran DASAR model (berlaku untuk semua tombol).
     // -> Cara mengatur besar-kecil PER SPOT: pakai `scale` di tourData,
     //    contoh: { ... , scale: "1.5 1.5 1.5" }. Nilai itu akan mengali
@@ -290,12 +395,15 @@ function createHotspotButton(hs) {
   } else if (hs.icon) {
     // ---- Mode GAMBAR KUSTOM: render <a-image> dari src #id di <a-assets> ----
     btn = document.createElement("a-image");
-    btn.setAttribute("src", hs.icon);        // contoh: "#btn-pindah"
+    btn.setAttribute("src", hs.icon); // contoh: "#btn-pindah"
     btn.setAttribute("width", "1");
     btn.setAttribute("height", "1");
     btn.setAttribute("position", "0 0 0");
     // transparansi untuk PNG (latar tembus pandang)
-    btn.setAttribute("material", "shader: flat; transparent: true; alphaTest: 0.1");
+    btn.setAttribute(
+      "material",
+      "shader: flat; transparent: true; alphaTest: 0.1",
+    );
   } else {
     // ---- Mode DEFAULT: lingkaran A-Frame + ikon panah SVG (ala Bootstrap) ----
     btn = document.createElement("a-circle");
@@ -308,8 +416,8 @@ function createHotspotButton(hs) {
       "data:image/svg+xml," +
       encodeURIComponent(
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">' +
-        '<path fill="#003b36" d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4z"/>' +
-        '</svg>'
+          '<path fill="#003b36" d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4z"/>' +
+          "</svg>",
       );
 
     var iconEl = document.createElement("a-plane");
@@ -321,7 +429,7 @@ function createHotspotButton(hs) {
       transparent: true,
       alphaTest: 0.5,
       depthTest: false,
-      src: ARROW_SVG
+      src: ARROW_SVG,
     });
     btn.appendChild(iconEl);
   }
@@ -333,10 +441,14 @@ function createHotspotButton(hs) {
   btn.setAttribute("rotation", hs.rotation || "0 0 0");
 
   // Animasi hover (membesar saat disentuh mouse)
-  btn.setAttribute("animation__hover",
-    "property: scale; startEvents: mouseenter; to: 0.5 0.5 0.5; dur: 150");
-  btn.setAttribute("animation__leave",
-    "property: scale; startEvents: mouseleave; to: 0.5 0.5 0.5; dur: 150");
+  btn.setAttribute(
+    "animation__hover",
+    "property: scale; startEvents: mouseenter; to: 0.5 0.5 0.5; dur: 150",
+  );
+  btn.setAttribute(
+    "animation__leave",
+    "property: scale; startEvents: mouseleave; to: 0.5 0.5 0.5; dur: 150",
+  );
 
   // Efek klik -> pindah ke spot tujuan
   btn.addEventListener("click", function () {
@@ -352,17 +464,17 @@ function createHotspotButton(hs) {
 (function () {
   "use strict";
 
-  let sceneEl   = null;
+  let sceneEl = null;
   let contentEl = null;
-  let skyEl     = null;
-  let hudSpot   = null;
+  let skyEl = null;
+  let hudSpot = null;
 
   // Inisialisasi setelah scene A-Frame siap
   document.addEventListener("DOMContentLoaded", function () {
-    sceneEl   = document.getElementById("scene");
+    sceneEl = document.getElementById("scene");
     contentEl = document.getElementById("scene-content");
-    skyEl     = document.getElementById("skybox");
-    hudSpot   = document.getElementById("hud-spot");
+    skyEl = document.getElementById("skybox");
+    hudSpot = document.getElementById("hud-spot");
 
     if (!sceneEl) return;
 
@@ -381,7 +493,9 @@ function createHotspotButton(hs) {
     var loading = document.getElementById("loading");
     if (loading) {
       loading.style.opacity = "0";
-      setTimeout(function () { loading.style.display = "none"; }, 500);
+      setTimeout(function () {
+        loading.style.display = "none";
+      }, 500);
     }
   }
 
@@ -417,8 +531,14 @@ function createHotspotButton(hs) {
       contentEl.appendChild(createObject3D(obj));
     });
 
-    console.log("Loaded", spotKey, "| hotspots:", (data.hotspots || []).length,
-                "| objek3D:", (data.objects3D || []).length);
+    console.log(
+      "Loaded",
+      spotKey,
+      "| hotspots:",
+      (data.hotspots || []).length,
+      "| objek3D:",
+      (data.objects3D || []).length,
+    );
   };
 
   /* --------------------------------------------------------------------------
@@ -432,15 +552,20 @@ function createHotspotButton(hs) {
     // Wadah hotspot — look-at menghadap kamera, posisi sesuai data
     var wrapper = document.createElement("a-entity");
     wrapper.setAttribute("position", hs.pos);
-    wrapper.setAttribute("look-at", "#camera");   // selalu hadap kamera
+    wrapper.setAttribute("look-at", "#camera"); // selalu hadap kamera
 
     // Ukuran per-tombol (opsional). Default 1 1 1.
     // Isi di tourData: scale: "1.5 1.5 1.5" pada masing-masing hotspot.
     wrapper.setAttribute("scale", hs.scale || "1 1 1");
 
-    wrapper.setAttribute("animation__float",
+    wrapper.setAttribute(
+      "animation__float",
       "property: position; dir: alternate; dur: 1200; loop: true; " +
-      "easing: easeInOutSine; from: " + hs.pos + "; to: " + floatUp(hs.pos));
+        "easing: easeInOutSine; from: " +
+        hs.pos +
+        "; to: " +
+        floatUp(hs.pos),
+    );
 
     // Tombol interaktif (bentuk / warna / gambar diatur di createHotspotButton)
     var btn = createHotspotButton(hs);
@@ -480,11 +605,16 @@ function createHotspotButton(hs) {
     el.setAttribute("rotation", obj.rot || "0 0 0");
     el.setAttribute("scale", obj.scale || "1 1 1");
     el.setAttribute("color", obj.color || "#ffffff");
-    el.setAttribute("material", "shader: standard; metalness: 0.2; roughness: 0.6");
+    el.setAttribute(
+      "material",
+      "shader: standard; metalness: 0.2; roughness: 0.6",
+    );
 
     // Animasi rotasi perlahan (sumbu Y)
-    el.setAttribute("animation__spin",
-      "property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear");
+    el.setAttribute(
+      "animation__spin",
+      "property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear",
+    );
 
     // Label opsional di atas objek
     if (obj.label) {
@@ -495,7 +625,7 @@ function createHotspotButton(hs) {
       label.setAttribute("width", "1.4");
       label.setAttribute("position", "0 0.9 0");
       label.setAttribute("scale", "0.5 0.5 0.5");
-      label.setAttribute("look-at", "#camera");   // label selalu hadap kamera
+      label.setAttribute("look-at", "#camera"); // label selalu hadap kamera
       el.appendChild(label);
     }
 
@@ -511,5 +641,4 @@ function createHotspotButton(hs) {
     parts[1] = (parts[1] + 0.12).toFixed(2);
     return parts.join(" ");
   }
-
 })();
